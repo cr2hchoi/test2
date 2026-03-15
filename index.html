@@ -3,48 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>링글 리스트 썸네일 테스트</title>
+    <title>링글 블로그 리스트 미리보기</title>
     <style>
+        /* 기본 설정 및 모바일 여백 */
         body {
             background-color: #ffffff;
+            margin: 0;
+            padding: 40px 20px; /* 상하 40px, 좌우 20px 여백 (모바일 대응) */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             display: flex;
-            justify-content: center;
-            padding: 50px;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* 링글 블로그 리스트의 실제 카드 컨테이너 규격 */
-        .thumbnail-wrapper {
-            position: relative;
-            /* 셀렉터에 명시된 h-[196px] w-[336px] 적용 */
-            width: 336px;
-            height: 196px;
+        h1 {
+            font-size: 24px;
+            margin-bottom: 32px;
+            width: 100%;
+            max-width: 1040px;
+            text-align: left;
+            color: #111;
+        }
+
+        /* 리스트 그리드 레이아웃 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 모바일: 1열 */
+            gap: 48px 16px; /* 위아래 48px, 좌우 16px 간격 */
+            width: 100%;
+            max-width: 1040px;
+        }
+
+        /* 데스크탑: 3열 */
+        @media (min-width: 768px) {
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .blog-card {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* 썸네일 컨테이너 (336:196 비율 고정) */
+        .thumb-box {
+            width: 100%;
+            aspect-ratio: 336 / 196;
+            background-color: #f3f4f6;
+            border-radius: 12px;
             overflow: hidden;
-            background-color: #e5e7eb; /* bg-gray-300 */
-            border-radius: 8px; /* 실제 사이트의 부드러운 모서리 느낌 추가 */
+            margin-bottom: 16px;
         }
 
-        .thumbnail-wrapper img {
+        .thumb-box img {
             width: 100%;
             height: 100%;
             object-fit: cover; /* 이미지가 찌그러지지 않게 꽉 채움 */
-            display: block;
         }
 
-        .label {
-            margin-top: 10px;
+        /* 텍스트 스타일링 */
+        .category {
             font-size: 14px;
-            color: #666;
-            text-align: center;
+            color: #3b82f6; /* 링글 포인트 블루 */
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #111;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
         }
     </style>
 </head>
 <body>
 
-    <div>
-        <div class="thumbnail-wrapper">
-            <img src="KakaoTalk_Photo_2026-03-15-17-26-00.png" alt="링글 리스트 썸네일 테스트">
+    <h1>인사이트 영어</h1>
+
+    <div class="blog-grid">
+        <div class="blog-card">
+            <div class="thumb-box">
+                <img src="KakaoTalk_Photo_2026-03-15-17-26-00.png" alt="썸네일 1">
+            </div>
+            <div class="category">인사이트 영어</div>
+            <div class="title">보류하다 영어로? 7가지 표현 완벽 정리</div>
         </div>
-        <p class="label">336px × 196px (리스트용 규격)</p>
+
+        <div class="blog-card">
+            <div class="thumb-box">
+                <img src="KakaoTalk_Photo_2026-03-15-17-26-00.png" alt="썸네일 2">
+            </div>
+            <div class="category">인사이트 영어</div>
+            <div class="title">계약 체결 전 꼭 알아야 할 '서명하다' 영어로?</div>
+        </div>
+
+        <div class="blog-card">
+            <div class="thumb-box">
+                <img src="KakaoTalk_Photo_2026-03-15-17-26-00.png" alt="썸네일 3">
+            </div>
+            <div class="category">인사이트 영어</div>
+            <div class="title">원어민처럼 자연스럽게 의견을 제시하는 법</div>
+        </div>
     </div>
 
 </body>
